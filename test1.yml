@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+
+
+- ec2:
+    key_name: linkey1
+    instance_type: t2.micro
+    image: ami-15e9c770
+    wait: yes
+    group: default
+    count: 1
+    vpc_subnet_id: subnet-98eb97d5
+    assign_public_ip: yes
