@@ -1,0 +1,28 @@
+--- 
+- 
+  connection: local
+  gather_facts: false
+  hosts: localhost
+  name: "Start of ELK Automation Script"
+  vars: 
+    amiver: ami-15e9c770
+    secgroup: default
+    sshkeypair: linkey1
+    subnetid: subnet-98eb97d5
+  vars_files: 
+    - host_vars/localhost
+- 
+  ec2: 
+    assign_public_ip: true
+    aws_access_key: "{{access_key}}"
+    aws_secret_key: "{{secret_key}}"
+    count: 1
+    group: "{{secgroup}}"
+    image: "{{amiver}}"
+    instance_type: t2.micro
+    key_name: "{{sshkeypair}}"
+    register: ec2
+    vpc_subnet_id: "{{subnetid}}"
+    wait: true
+  name: "Create EC2 Instance"
+  tasks: ~
